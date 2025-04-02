@@ -1,53 +1,97 @@
+"use client"; // Directive indiquant que ce composant doit être exécuté côté client
+
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/public/images/logo.png";
-import { FiUser } from "react-icons/fi";
-import { Accordion, AccordionItem } from "@heroui/react";
+import { usePathname } from "next/navigation";
+import logo from "@/public/images/png final blanc0001.png";
+import { IoHomeOutline, IoServerOutline } from "react-icons/io5";
+import { GiLaptop } from "react-icons/gi";
+import { MdPhoneAndroid } from "react-icons/md";
+import { FaServer, FaUser } from "react-icons/fa";
+import { JSX } from "react";
+import { useTheme } from "@/context/ThemeContext";
 
-export default function Sidebar() {
+/**
+ * Composant Sidebar
+ * Ce composant représente une barre latérale de navigation pour une application Next.js.
+ * Il affiche un menu avec plusieurs liens et met en évidence le lien actif.
+ *
+ * @component
+ * @returns {JSX.Element} Élément JSX représentant la barre latérale.
+ */
+export default function Sidebar(): JSX.Element {
+  // Récupère l'URL actuelle pour gérer l'état actif des liens
+  const pathname = usePathname();
+  const { theme } = useTheme();
+
+  /**
+   * Liste des éléments du menu.
+   * Chaque objet contient un nom, un chemin (URL) et une icône associée.
+   *
+   * @type {Array<{name: string, path: string, icon: JSX.Element}>}
+   */
+  const menuItems = [
+    {
+      name: "Dashboard",
+      path: "/dashboard",
+      icon: <IoHomeOutline size={23} />,
+    },
+    { name: "Web", path: "/web", icon: <GiLaptop size={23} /> },
+    { name: "Mobile", path: "/mobile", icon: <MdPhoneAndroid size={23} /> },
+    { name: "Backend", path: "/backend", icon: <IoServerOutline size={23} /> },
+    { name: "Déploiement", path: "/deploiement", icon: <FaServer size={22} /> },
+    { name: "Utilisateurs", path: "/users", icon: <FaUser size={22} /> },
+  ];
+
   return (
-    <>
-      <aside className="sidebar fixed top-0 left-0 z-9999 flex h-screen w-[290px] flex-col overflow-y-auto border-r border-gray-200 bg-white px-5 transition-all duration-300 lg:static lg:translate-x-0 dark:border-gray-800 dark:bg-black -translate-x-full">
-        <div className="flex items-center ">
-          <Link href="/">
-            <Image src={logo} width="150" height="32" alt="logo" />
-          </Link>
-        </div>
+    /**
+     * Conteneur principal de la barre latérale
+     * Fixé à gauche et occupe toute la hauteur de l'écran
+     */
+    <aside className="sidebar fixed top-0 left-0 z-999  flex h-screen w-[290px] flex-col overflow-y-auto border-r border-gray-200 bg-white px-5 transition-all duration-300 lg:static lg:translate-x-0 dark:border-gray-800 dark:bg-black -translate-x-full shadow-2xs">
+      {/* Logo */}
+      <div className="flex items-center">
+        <Link href="/">
+          <Image src={logo} width={150} height={32} alt="logo" />
+        </Link>
+      </div>
 
-        <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
-          <nav>
-            <div>
-              <h3 className="mb-4 text-sm leading-[20px] text-gray-400 uppercase">
-                MENU
-              </h3>
+      {/* Contenu de la barre latérale */}
+      <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
+        <nav>
+          {/* Titre du menu */}
+          <h3
+            className={`mb-4 text-sm leading-[20px] ${
+              theme === "light" ? "text-gray-400" : "text-white"
+            } uppercase`}
+          >
+            MENU
+          </h3>
 
-              <ul className="mb-6 flex flex-col gap-4">
-                <li>
-                  <a href="#" className="menu-item group menu-item-active">
-                    <span className="menu-item-text">Dashboard</span>
-                  </a>
-                </li>
-                <li className="flex items-center p-2 mb-2 text-[#1E1E1E] hover:text-white hover:bg-gray-800 rounded">
-                  <FiUser size={24} className="mr-2" />
-                  <Link href="/profile">User Profile</Link>
-                </li>
-                <li>
-                  <Accordion>
-                    <AccordionItem
-                      key="1"
-                      aria-label="Accordion 1"
-                      title="Accordion 1"
-                      className=" text-start"
-                    >
-                      hello world
-                    </AccordionItem>
-                  </Accordion>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </aside>
-    </>
+          {/* Liste des liens de navigation */}
+          <ul className="mb-6 flex flex-col gap-4">
+            {menuItems.map((item) => (
+              <li key={item.path}>
+                <Link
+                  href={item.path}
+                  className={`flex items-center p-2 mb-1 text-sm font-semibold ${
+                    theme === "light" ? "text-[#000]" : "text-white"
+                  } rounded transition-all duration-200 ${
+                    pathname === item.path
+                      ? "bg-gray-800 text-white"
+                      : "text-[#000] hover:bg-gray-800 hover:text-white"
+                  }`}
+                >
+                  {/* Icône du menu */}
+                  <span className="mr-2">{item.icon}</span>
+                  {/* Nom du menu */}
+                  {item.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </aside>
   );
 }

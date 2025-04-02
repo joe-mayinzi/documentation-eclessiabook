@@ -3,6 +3,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import { SessionProvider } from "next-auth/react";
 import { HeroUIProvider } from "@heroui/react";
+import { ThemeProvider } from "@/context/ThemeContext";
 
 import "../public/styles/globals.css";
 
@@ -22,14 +23,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <HeroUIProvider>
-      <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
-          <SessionProvider>{children}</SessionProvider>
-        </body>
-      </html>
-    </HeroUIProvider>
+    <html lang="en">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <HeroUIProvider>
+          <SessionProvider>
+            <ThemeProvider>{children}</ThemeProvider>
+          </SessionProvider>
+        </HeroUIProvider>
+      </body>
+    </html>
   );
 }
