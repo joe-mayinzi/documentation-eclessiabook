@@ -1,5 +1,9 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Geist, Geist_Mono } from "next/font/google";
+import { SessionProvider } from "next-auth/react";
+import { HeroUIProvider } from "@heroui/react";
+
 import "../public/styles/globals.css";
 
 const geistSans = Geist({
@@ -12,32 +16,20 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Documentation",
-  description: "Documentation officielle de Eclaisiabook",
-  icons: {
-    icon: [
-      { url: "/favicon.png" }, // Format standard
-      { url: "/favicon.png", type: "image/png" }, // Optionnel : version 32x32
-      { url: "/favicon.png", type: "image/png" }, // Optionnel : version 16x16
-    ],
-    apple: "/favicon.png", // Version pour iOS
-    shortcut: "/favicon.png",
-  },
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+    <HeroUIProvider>
+      <html lang="en">
+        <body
+          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        >
+          <SessionProvider>{children}</SessionProvider>
+        </body>
+      </html>
+    </HeroUIProvider>
   );
 }

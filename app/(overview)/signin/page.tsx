@@ -1,22 +1,40 @@
 "use client";
 
-import { yupResolver } from "@hookform/resolvers/yup";
-import { signinSchema } from "@/validation/signinSchema";
-import { useForm } from "react-hook-form";
-import { SignInFormData } from "@/types/types";
+//import { yupResolver } from "@hookform/resolvers/yup";
+//import { signinSchema } from "@/validation/signinSchema";
+//import { useForm } from "react-hook-form";
+//import { SignInFormData } from "@/types/types";
+import React, { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 export default function Signin() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<SignInFormData>({
-    resolver: yupResolver(signinSchema),
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+  // const {
+  //   //register,
+  //   handleSubmit,
+  //   formState: { errors },
+  // } = useForm<SignInFormData>({
+  //   resolver: yupResolver(signinSchema),
+  // });
 
-  const onSubmit = (data: SignInFormData) => {
-    console.log("Formulaire soumis :", data);
-    // Ajoute ici ton appel API ou ta logique de connexion
+  const onSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const result = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+      callbackUrl: "/dashboard", // Redirection après connexion
+    });
+
+    if (result?.error) {
+      alert("Échec de connexion : Vérifie tes identifiants");
+    } else {
+      router.push("/dashboard"); // Redirige après connexion
+    }
   };
   return (
     <main className="bg-[#161950] ">
@@ -29,7 +47,7 @@ export default function Signin() {
                   Connexion
                 </h3>
               </div>
-              <form onSubmit={handleSubmit(onSubmit)}>
+              <form onSubmit={onSubmit}>
                 <div className=" mb-4">
                   <div>
                     <label
@@ -45,13 +63,14 @@ export default function Signin() {
                       id="mail"
                       placeholder="ex : joe.mayinzi@linked-solution.com"
                       className="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent py-2.5 pl-4 pr-11 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30  focus:outline-none"
-                      {...register("email")}
+                      onChange={(e) => setEmail(e.target.value)}
+                      //{...register("email")}
                     />
-                    {errors.email && (
+                    {/* {errors.email && (
                       <p className="text-red-500 text-sm">
                         {errors.email.message}
                       </p>
-                    )}
+                    )} */}
                   </div>
                 </div>
                 <div className=" mb-4">
@@ -69,17 +88,18 @@ export default function Signin() {
                       id="password"
                       placeholder="Entrez votre mot de passe"
                       className="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent py-2.5 pl-4 pr-11 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800 focus:outline-none"
-                      {...register("password")}
+                      onChange={(e) => setPassword(e.target.value)}
+                      //{...register("password")}
                     />
-                    {errors.password && (
+                    {/* {errors.password && (
                       <p className="text-red-500 text-sm">
                         {errors.password.message}
                       </p>
-                    )}
+                    )} */}
                   </div>
                 </div>
                 <div>
-                  <button className="flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600 bg-[#465fff] ">
+                  <button className=" cursor-pointer flex items-center justify-center w-full px-4 py-3 text-sm font-medium text-white transition rounded-lg bg-brand-500 shadow-theme-xs hover:bg-brand-600 bg-[#465fff] ">
                     Se connecter
                   </button>
                 </div>
