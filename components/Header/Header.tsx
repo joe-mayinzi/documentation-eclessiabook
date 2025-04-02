@@ -91,16 +91,15 @@ export default function Header() {
                   JM
                 </Button>
               </DropdownTrigger>
-              <DropdownMenu aria-label="Static Actions">
-                <DropdownItem key="new">New file</DropdownItem>
-                <DropdownItem key="copy">Copy link</DropdownItem>
-                <DropdownItem key="edit">Edit file</DropdownItem>
+              <DropdownMenu
+                className=" bg-white shadow-lg p-4"
+                aria-label="Static Actions"
+              >
                 <DropdownItem
-                  key="delete"
-                  className="text-danger"
-                  color="danger"
+                  className="flex items-center p-2 mb-1 text-sm font-semibold rounded-full transition-all duration-200 hover:bg-gray-800 hover:text-white"
+                  key="new"
                 >
-                  Delete file
+                  Logout
                 </DropdownItem>
               </DropdownMenu>
             </Dropdown>
