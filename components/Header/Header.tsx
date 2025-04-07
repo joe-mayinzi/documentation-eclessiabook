@@ -14,7 +14,7 @@ export default function Header() {
     <header
       className={`py-4 px-6 ${
         theme === "light" ? "bg-white" : "dark:bg-black"
-      } border-b border-gray-200 dark:border-gray-800 custom-shadaw`}
+      } border-b border-gray-200 dark:border-gray-800 custom-shadaw w-full sticky top-0 z-50`}
     >
       <div className="container mx-auto flex justify-between">
         <div className="flex gap-2">

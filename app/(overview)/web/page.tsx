@@ -4,7 +4,7 @@ import CodeBlock from "@/components/CodeBlock/CodeBlock";
 import DashboardLayout from "@/components/DashboardLayout/DashboardLayout";
 import { useTheme } from "@/context/ThemeContext";
 
-export default function DashboardPage() {
+export default function Web() {
   const { theme } = useTheme();
 
   // Exemples de code à afficher dans les sections correspondantes
@@ -26,7 +26,11 @@ yarn install --skip-integrity-check
           theme === "light" ? "bg-[#f5f7fa]" : "bg-black"
         }`}
       >
-        <div className="bg-white shadow-lg rounded-lg w-full lg:w-3/4 p-6">
+        <div
+          className={`${
+            theme === "light" ? "bg-white" : "bg-black"
+          } shadow-lg rounded-lg w-full lg:w-3/4 p-6`}
+        >
           <h1 className="text-2xl font-bold mb-4">
             Documentation de l&apos;application EcclesiaBook
           </h1>
