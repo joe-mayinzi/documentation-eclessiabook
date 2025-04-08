@@ -48,7 +48,7 @@ export default function Sidebar(): JSX.Element {
      * Conteneur principal de la barre latérale
      * Fixé à gauche et occupe toute la hauteur de l'écran
      */
-    <aside className="sidebar fixed  z-999  flex h-screen w-[290px] flex-col  border-r border-gray-200 bg-white px-5 transition-all duration-300 lg:static lg:translate-x-0 dark:border-gray-800 dark:bg-black -translate-x-full shadow-2xs">
+    <aside className="sidebar fixed  z-999  flex max-h-full w-[290px] flex-col  border-r border-gray-200 bg-white px-5 transition-all duration-300 lg:static lg:translate-x-0 dark:border-gray-800 dark:bg-black -translate-x-full shadow-2xs">
       {/* Logo */}
       <div className="flex items-center">
         <Link href="/">
