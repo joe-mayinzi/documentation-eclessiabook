@@ -26,212 +26,67 @@ yarn install --skip-integrity-check
           theme === "light" ? "bg-[#f5f7fa]" : "bg-black"
         }`}
       >
-        <div className="bg-white shadow-lg rounded-lg w-full lg:w-3/4 p-6">
-          <h1 className="text-2xl font-bold mb-4">
-            Documentation de l&apos;application EcclesiaBook
-          </h1>
-          <p>
-            Voici la documentation complète pour le projet EcclesiaBook. Vous
-            trouverez ci-dessous les étapes d&apos;installation, la structure du
-            code, et bien plus encore.
+        <div className="bg-white shadow-lg rounded-lg w-full p-6">
+        <div className="prose max-w-full">
+          <h1 className="font-bold mb-4">Bienvenue sur la Documentation du Projet EcclesiaBook</h1>
+
+          <h2>Historique du Projet</h2>
+          <p className="mb-4">
+            Le projet <strong>EcclesiaBook</strong> a vu le jour dans un contexte où l'équipe de développement a dû relever le défi de travailler sur un projet complexe sans disposer de documentation ou de ressources claires. Lors de notre prise en charge du projet, nous avons rapidement constaté que l'absence de documentation centralisée rendait difficile la compréhension du code et l'ajout de nouvelles fonctionnalités. De plus, l'équipe dépendait fortement des anciens développeurs, ce qui ralentissait le processus et créait des points de fragilité.
+          </p>
+          <p className="mb-4">
+            Face à ce défi, nous avons décidé de changer d'approche. Au lieu de continuer à dépendre des connaissances des individus, nous avons choisi de mettre en place <strong>un système de documentation solide et accessible</strong> à tous les futurs développeurs qui travailleront sur EcclesiaBook. Cette documentation est conçue pour être un véritable <strong>point de référence</strong>, une ressource fiable et pérenne, permettant à toute l'équipe, actuelle ou future, de gagner en autonomie et en efficacité.
           </p>
 
-          {/* Table des matières */}
-          <div className="lg:hidden mb-6">
-            <h2 className="text-xl font-semibold mb-4">Table des matières</h2>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <a href="#section1" className="hover:underline">
-                  1. Introduction
-                </a>
-              </li>
-              <li>
-                <a href="#section2" className="hover:underline">
-                  2. Installation
-                </a>
-              </li>
-              <li>
-                <a href="#section3" className="hover:underline">
-                  3. Structure des dossiers
-                </a>
-              </li>
-              <li>
-                <a href="#section4" className="hover:underline">
-                  4. Fonctionnalités principales
-                </a>
-              </li>
-              <li>
-                <a href="#section5" className="hover:underline">
-                  5. Commentaire du code
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Section 1: Introduction */}
-          <section id="section1" className="mb-12">
-            <h2 className="text-xl font-semibold mb-4">1. Introduction</h2>
-            <h3 className="font-medium">1.1 Définition</h3>
-            <p>
-              EcclesiaBook est une plateforme combinant un réseau social pour
-              les fidèles des églises et une solution de gestion pour les
-              églises.
-            </p>
-            <h3 className="font-medium">1.2 Technologies utilisées</h3>
-            <p>
-              Frontend : React, Next.js
-              <br />
-              Authentification : NextAuth
-              <br />
-              Backend : API REST (Node.js, NestJS, etc.)
-              <br />
-              Base de données : PostgreSQL/MongoDB (à confirmer selon la
-              configuration dans config)
-            </p>
-            <h3 className="font-medium">1.3 Architecture générale</h3>
-            <p>
-              Le projet suit une architecture MVC (Modèle - Vue - Contrôleur),
-              où :
-              <br />
-              Modèle : Gestion des données et interactions avec la base de
-              données
-              <br />
-              Vue : Interface utilisateur avec React et Next.js
-              <br />
-              Contrôleur : Gestion des requêtes et de la logique métier via les
-              routes API
-            </p>
-          </section>
-
-          {/* Section 2: Installation */}
-          <section id="section2" className="mb-12">
-            <h2 className="text-xl font-semibold mb-4">2. Installation</h2>
-            <h3 className="font-medium">2.1 Prérequis</h3>
-            <p>Node.js, Git & GitHub, npm ou yarn</p>
-            <h3 className="font-medium">
-              2.2 Installation de l’environnement de développement
-            </h3>
-            <CodeBlock code={gitCloneCode} />
-            <p>Clonez le projet depuis GitHub :</p>
-            <pre>{gitCloneCode}</pre>
-
-            <h3 className="font-medium">2.3 Installation des dépendances</h3>
-            <CodeBlock code={installDependenciesCode} />
-            <p>Installez les dépendances avec npm ou yarn :</p>
-            <pre>{installDependenciesCode}</pre>
-
-            <h3 className="font-medium">2.4 Démarrage du serveur local</h3>
-            <CodeBlock code={startServerCode} />
-            <p>Ensuite, lancez le serveur local :</p>
-            <pre>{startServerCode}</pre>
-          </section>
-
-          {/* Section 3: Structure des dossiers */}
-          <section id="section3" className="mb-12">
-            <h2 className="text-xl font-semibold mb-4">
-              3. Structure des dossiers
-            </h2>
-            <h3 className="font-medium">3.1 Dossier /app</h3>
-            <p>
-              Ce dossier contient les pages principales et les routes de
-              l&apos;application.
-            </p>
-            <ul className="list-disc ml-6">
-              <li>/admin : Gestion CRUD des administrateurs</li>
-              <li>/admin/create : Page pour la création d’un administrateur</li>
-              <li>
-                layout.tsx : Gestion de la structure de l’application avec
-                Next.js
-              </li>
-              <li>not-found.tsx : Gestion des pages introuvables</li>
-              <li>page.tsx : Page principale</li>
-            </ul>
-            <h3 className="font-medium">3.2 Dossier /api</h3>
-            <p>
-              Contient les routes API de Next.js pour gérer les requêtes backend
-              côté serveur.
-            </p>
-
-            {/* Ajouter les autres sections de la structure des dossiers ici */}
-          </section>
-
-          {/* Section 4: Fonctionnalités principales */}
-          <section id="section4" className="mb-12">
-            <h2 className="text-xl font-semibold mb-4">
-              4. Fonctionnalités principales
-            </h2>
-            <h3 className="font-medium">
-              4.1 Fonctionnalités du réseau social
-            </h3>
-            <ul className="list-disc ml-6">
-              <li>Bibliothèque numérique</li>
-              <li>Bible et Plan de lecture</li>
-              <li>Forum, Sondages & Questions</li>
-              <li>Mur de prière</li>
-              <li>Événements, Avis et Suggestions</li>
-            </ul>
-            <h3 className="font-medium">
-              4.2 Fonctionnalités de gestion des églises
-            </h3>
-            <ul className="list-disc ml-6">
-              <li>Gestion des membres, événements et annonces</li>
-              <li>Finances : budget, abonnements</li>
-              <li>Archivage et administration</li>
-            </ul>
-          </section>
-
-          {/* Section 5: Commentaire du code */}
-          <section id="section5" className="mb-12">
-            <h2 className="text-xl font-semibold mb-4">
-              5. Commentaire du code
-            </h2>
-            <p>
-              Le projet utilise JSDoc pour documenter le code. Voici un exemple
-              de documentation :
-            </p>
-            <CodeBlock
-              code={`/**
- * Ajoute un nouvel administrateur à la base de données.
- * @param {string} name - Nom de l'administrateur.
- * @param {string} email - Adresse e-mail de l'administrateur.
- * @returns {Promise<boolean>} Retourne \`true\` si l'ajout est réussi, sinon \`false\`.
- */`}
-            />
-          </section>
-        </div>
-
-        {/* Table des matières pour grands écrans */}
-        <div className="bg-white shadow-lg rounded-lg hidden lg:block w-1/4 border-l p-6 sticky top-0 h-screen overflow-y-auto">
-          <h2 className="text-xl font-semibold mb-4">Table des matières</h2>
-          <ul className="space-y-2 text-sm">
-            <li>
-              <a href="#section1" className="hover:underline">
-                1. Introduction
-              </a>
-            </li>
-            <li>
-              <a href="#section2" className="hover:underline">
-                2. Installation
-              </a>
-            </li>
-            <li>
-              <a href="#section3" className="hover:underline">
-                3. Structure des dossiers
-              </a>
-            </li>
-            <li>
-              <a href="#section4" className="hover:underline">
-                4. Fonctionnalités principales
-              </a>
-            </li>
-            <li>
-              <a href="#section5" className="hover:underline">
-                5. Commentaire du code
-              </a>
-            </li>
+          <h2>Pourquoi cette Documentation ?</h2>
+          <ul className="mb-4">
+            <li><strong>Faciliter l'intégration des nouveaux développeurs</strong> : En fournissant des informations claires et structurées, cette documentation permet à chaque membre de l'équipe de rapidement comprendre les fondamentaux du projet.</li>
+            <li><strong>Assurer la pérennité du projet</strong> : En centralisant les connaissances, nous minimisons les risques liés à la perte de savoir-faire et garantissons que les décisions prises lors de l'évolution du projet sont toujours comprises.</li>
+            <li><strong>Optimiser le développement continu</strong> : Grâce à une documentation complète, les développeurs peuvent facilement trouver des solutions à leurs problèmes, ce qui accélère le temps de développement et améliore la qualité du code.</li>
           </ul>
+
+          <h2>Structure de la Documentation</h2>
+          <p className="mb-4">
+            La documentation d'EcclesiaBook est structurée de manière à vous guider à travers les différentes étapes du développement du projet. Voici un aperçu de ce que vous y trouverez :
+          </p>
+          <ol className="mb-4">
+            <li><strong>Introduction au Projet</strong> : Présentation générale d'EcclesiaBook, de ses objectifs et de son architecture.</li>
+            <li><strong>Installation et Configuration</strong> : Guide détaillé sur la mise en place de l'environnement de développement, ainsi que les étapes pour commencer à travailler sur le projet.</li>
+            <li><strong>Architecture du Code</strong> : Une explication claire de la structure du code, de la base de données, des principales librairies et technologies utilisées.</li>
+            <li><strong>Guides de Développement</strong> : Des bonnes pratiques de développement, des exemples de code et des tutoriels pour vous aider à ajouter de nouvelles fonctionnalités ou à corriger des bugs.</li>
+            <li><strong>Questions Fréquentes (FAQ)</strong> : Une section dédiée aux problèmes courants rencontrés par les développeurs et à leurs solutions.</li>
+            <li><strong>Références API</strong> : Des informations complètes sur les différentes API utilisées dans le projet, avec des exemples d'appels et de réponses.</li>
+          </ol>
+
+          <h2>Un Outil pour Tous</h2>
+          <p className="mb-4">
+            Ce projet n'est pas simplement une documentation technique, mais un véritable <strong>outil d'entraide</strong> pour toute l'équipe. À travers cette ressource, nous espérons :
+          </p>
+          <ul className="mb-4">
+            <li><strong>Faciliter la collaboration</strong> entre les membres de l'équipe, qu'ils soient nouveaux ou anciens, en leur offrant un accès rapide à des informations précises et pertinentes.</li>
+            <li><strong>Assurer la qualité du code</strong> en suivant des normes de développement partagées et validées par l'équipe.</li>
+            <li><strong>Permettre l'évolution du projet</strong> en permettant à tout développeur de prendre le relais facilement, en comprenant rapidement les choix faits par l'équipe précédente et en poursuivant le travail de manière fluide.</li>
+          </ul>
+
+          <h2>À qui s'adresse cette Documentation ?</h2>
+          <p className="mb-4">
+            Cette documentation est avant tout destinée aux <strong>développeurs</strong> travaillant sur <strong>EcclesiaBook</strong>, qu'ils soient déjà membres de l'équipe ou qu'ils rejoignent le projet à tout moment. Elle est également utile pour :
+          </p>
+          <ul className="mb-4">
+            <li><strong>Les managers et chefs de projet</strong> qui souhaitent comprendre le fonctionnement du projet.</li>
+            <li><strong>Les nouveaux contributeurs</strong> qui désirent participer au projet en contribuant à la base de code.</li>
+          </ul>
+
+          <h2>Conclusion</h2>
+          <p className="mb-4">
+            Le projet EcclesiaBook a évolué grâce à une vision commune : celle d'établir un système fiable et accessible pour toute l'équipe. Nous croyons fermement que cette documentation jouera un rôle clé dans le développement continu et l'essor du projet. Notre objectif est que chaque développeur, en rejoignant le projet, puisse y trouver une source d'inspiration, une aide et une référence fiable pour avancer dans son travail.
+          </p>
+          <p>
+            Bienvenue dans cette aventure ! Nous espérons que cette documentation vous sera utile et vous permettra de faire évoluer EcclesiaBook de manière efficace et durable.
+          </p>
         </div>
       </div>
+    </div>
     </DashboardLayout>
   );
 }

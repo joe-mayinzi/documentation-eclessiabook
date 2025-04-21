@@ -6,6 +6,8 @@ import NextAuth, {
 } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { JWT } from "next-auth/jwt";
+import dotenv from "dotenv";
+dotenv.config(); 
 
 // Définir les types pour les données utilisateur et JWT
 interface User {
@@ -91,7 +93,9 @@ export const authOptions: AuthOptions = {
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET,
+  secret: "slHY9NaAd7z1Y516XaNosyaWJ8Yvu8hRuuPP35/WOQg=",
+  
+  
 };
 
 export default NextAuth(authOptions);

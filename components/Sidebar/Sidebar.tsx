@@ -32,7 +32,7 @@ export default function Sidebar(): JSX.Element {
    */
   const menuItems = [
     {
-      name: "Dashboard",
+      name: "Accueil",
       path: "/dashboard",
       icon: <IoHomeOutline size={23} />,
     },

@@ -6,9 +6,12 @@ import {
   Button,
 } from "@heroui/react";
 import { useTheme } from "@/context/ThemeContext";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
+  const { data: session } = useSession();
+
 
   return (
     <header
@@ -96,6 +99,7 @@ export default function Header() {
                 aria-label="Static Actions"
               >
                 <DropdownItem
+                  onClick={() => signOut()} 
                   className="flex items-center p-2 mb-1 text-sm font-semibold rounded-full transition-all duration-200 hover:bg-gray-800 hover:text-white"
                   key="new"
                 >
