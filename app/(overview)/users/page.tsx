@@ -81,9 +81,9 @@ export default function Users() {
         <Table
           aria-label="Liste des Administrateurs"
           removeWrapper
-          className="bg-white shadow-lg border border-gray-200 rounded-lg overflow-x-auto"
+          className={`${theme === "light" ? "bg-white" : "bg-black text-white"} shadow-lg border border-gray-200 rounded-lg overflow-x-auto`}
         >
-          <TableHeader className="bg-gray-100 text-gray-700">
+          <TableHeader>
             {columns.map((column) => (
               <TableColumn
                 key={column.uid}
@@ -91,7 +91,7 @@ export default function Users() {
               >
                 {column.name}
               </TableColumn>
-            ))}
+            ))} 
           </TableHeader>
           <TableBody>
             {users.map((user, index) => (

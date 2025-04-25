@@ -41,6 +41,7 @@ export default function Sidebar(): JSX.Element {
     { name: "Backend", path: "/backend", icon: <IoServerOutline size={23} /> },
     { name: "Déploiement", path: "/deploiement", icon: <FaServer size={22} /> },
     { name: "Utilisateurs", path: "/users", icon: <FaUser size={22} /> },
+    { name: "Politique de confidentialite", path: "/policy", icon: <FaUser size={22} /> },
   ];
 
   return (

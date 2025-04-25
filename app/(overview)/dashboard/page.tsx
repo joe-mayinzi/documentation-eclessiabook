@@ -26,7 +26,7 @@ yarn install --skip-integrity-check
           theme === "light" ? "bg-[#f5f7fa]" : "bg-black"
         }`}
       >
-        <div className="bg-white shadow-lg rounded-lg w-full p-6">
+      <div className={`${theme === "light" ? "bg-white" : "bg-black text-white"} shadow-lg rounded-lg w-full p-6`}>
         <div className="prose max-w-full">
           <h1 className="font-bold mb-4">Bienvenue sur la Documentation du Projet EcclesiaBook</h1>
 

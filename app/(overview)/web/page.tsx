@@ -28,7 +28,7 @@ yarn install --skip-integrity-check
         {/* Table des matières - Mobile en haut, Desktop à droite */}
         <div
           className={`lg:hidden order-1 mb-4 ${
-            theme === "light" ? "bg-white text-black" : "bg-zinc-900 text-white"
+            theme === "light" ? "bg-white text-black" : "bg-black text-white"
           } rounded-lg p-4 shadow-md`}
         >
           <h2 className="text-xl font-semibold mb-4">Table des matières</h2>
@@ -52,7 +52,7 @@ yarn install --skip-integrity-check
         {/* Contenu principal */}
         <div
           className={`order-2 w-full lg:w-3/4 p-6 rounded-lg shadow-lg ${
-            theme === "light" ? "bg-white text-black" : "bg-zinc-900 text-white"
+            theme === "light" ? "bg-white text-black" : "bg-black text-white"
           }`}
         >
           <h1 className="text-2xl font-bold mb-6">
@@ -181,7 +181,7 @@ yarn install --skip-integrity-check
           className={`order-3 hidden lg:block w-full lg:w-1/4 sticky top-4 h-fit max-h-screen overflow-y-auto p-6 shadow-lg rounded-lg ${
             theme === "light"
               ? "bg-white text-[#000]"
-              : "bg-zinc-900 text-white"
+              : "bg-black text-white"
           }`}
         >
           <h2 className="text-xl font-semibold mb-4">Table des matières</h2>
