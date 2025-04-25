@@ -7,17 +7,6 @@ import { useTheme } from "@/context/ThemeContext";
 export default function DashboardPage() {
   const { theme } = useTheme();
 
-  // Exemples de code à afficher dans les sections correspondantes
-  const installDependenciesCode = `npm install --legacy-peer-deps
-# ou
-yarn install --skip-integrity-check
-`;
-
-  const startServerCode = `npm run dev
-`;
-
-  const gitCloneCode = `git clone https://github.com/techniqueLinkedSolution/ecclesiabook-ultimate.git
-`;
 
   return (
     <DashboardLayout>

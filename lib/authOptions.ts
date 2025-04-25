@@ -1,11 +1,9 @@
 import NextAuth, {
   AuthOptions,
   Session,
-  User as NextAuthUser,
   JWT as NextAuthJWT,
 } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { JWT } from "next-auth/jwt";
 import dotenv from "dotenv";
 dotenv.config(); 
 
@@ -23,12 +21,17 @@ interface JWTToken {
   role?: string;
 }
 
+
+
+
 // Étendre le type Session de NextAuth pour y ajouter des propriétés personnalisées
 interface ExtendedSession extends Session {
   accessToken?: string;
   email?: string;
   role?: string;
 }
+
+
 
 export const authOptions: AuthOptions = {
   providers: [

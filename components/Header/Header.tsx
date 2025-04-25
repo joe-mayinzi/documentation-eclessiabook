@@ -6,11 +6,10 @@ import {
   Button,
 } from "@heroui/react";
 import { useTheme } from "@/context/ThemeContext";
-import { useSession, signOut } from "next-auth/react";
+import {  signOut } from "next-auth/react";
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
-  const { data: session } = useSession();
 
 
   return (
