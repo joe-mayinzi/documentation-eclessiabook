@@ -11,65 +11,78 @@ import {
   TableCell,
   Chip,
   Button,
-} from "@heroui/react"; // Importation des composants Hero UI
+} from "@heroui/react";
+
+type User = {
+  id: string;
+  email: string;
+  telephone: string;
+  role: string;
+  status: "Actif" | "Inactif";
+};
+
+type Column = {
+  name: string;
+  uid: keyof User | "actions";
+  sortable?: boolean;
+};
+
+const columns: Column[] = [
+  { name: "UUID", uid: "id", sortable: true },
+  { name: "EMAIL", uid: "email", sortable: true },
+  { name: "TÉLÉPHONE", uid: "telephone" },
+  { name: "RÔLE", uid: "role", sortable: true },
+  { name: "STATUT", uid: "status", sortable: true },
+  { name: "ACTIONS", uid: "actions" },
+];
+
+const statusOptions: Record<User["status"], "success" | "danger"> = {
+  Actif: "success",
+  Inactif: "danger",
+};
+
+const users: User[] = [
+  {
+    id: "1a2b3c4d",
+    email: "admin@example.com",
+    telephone: "+243 970 000 111",
+    role: "Super Admin",
+    status: "Actif",
+  },
+  {
+    id: "5e6f7g8h",
+    email: "user@example.com",
+    telephone: "+243 970 222 333",
+    role: "Modérateur",
+    status: "Inactif",
+  },
+  {
+    id: "5e6f7g9h",
+    email: "user2@example.com",
+    telephone: "+243 970 222 334",
+    role: "Modérateur",
+    status: "Actif",
+  },
+  {
+    id: "5e6f7g0h",
+    email: "user3@example.com",
+    telephone: "+243 970 222 335",
+    role: "Utilisateur",
+    status: "Inactif",
+  },
+];
+
+const safeValue = (value: string | number | boolean | null | undefined): string => {
+  if (value === null || value === undefined) return "-";
+  return String(value);
+};
 
 export default function Users() {
   const { theme } = useTheme();
 
-  // Données des utilisateurs en ligne (sans utiliser data.ts)
-  const columns = [
-    { name: "UUID", uid: "id", sortable: true },
-    { name: "EMAIL", uid: "email", sortable: true },
-    { name: "TÉLÉPHONE", uid: "telephone" },
-    { name: "RÔLE", uid: "role", sortable: true },
-    { name: "STATUT", uid: "status", sortable: true },
-    { name: "ACTIONS", uid: "actions" },
-  ];
-
-  const statusOptions = {
-    Actif: "success",
-    Inactif: "danger",
-  };
-
-  const users = [
-    {
-      id: "1a2b3c4d",
-      email: "admin@example.com",
-      telephone: "+243 970 000 111",
-      role: "Super Admin",
-      status: "Actif",
-    },
-    {
-      id: "5e6f7g8h",
-      email: "user@example.com",
-      telephone: "+243 970 222 333",
-      role: "Modérateur",
-      status: "Inactif",
-    },
-    {
-      id: "5e6f7g9h",
-      email: "user2@example.com",
-      telephone: "+243 970 222 334",
-      role: "Modérateur",
-      status: "Actif",
-    },
-    {
-      id: "5e6f7g0h",
-      email: "user3@example.com",
-      telephone: "+243 970 222 335",
-      role: "Utilisateur",
-      status: "Inactif",
-    },
-  ];
-
   const handleOpen = () => {
-    // Logique pour ouvrir une modal de confirmation de suppression
     alert("Suppression d'un utilisateur");
   };
-
-  // Fonction pour gérer les valeurs undefined et les remplacer par "-"
-  const safeValue = (value: any) =>
-    value !== undefined && value !== null ? value : "-";
 
   return (
     <DashboardLayout>
@@ -81,7 +94,9 @@ export default function Users() {
         <Table
           aria-label="Liste des Administrateurs"
           removeWrapper
-          className={`${theme === "light" ? "bg-white" : "bg-black text-white"} shadow-lg border border-gray-200 rounded-lg overflow-x-auto`}
+          className={`${
+            theme === "light" ? "bg-white" : "bg-black text-white"
+          } shadow-lg border border-gray-200 rounded-lg overflow-x-auto`}
         >
           <TableHeader>
             {columns.map((column) => (
@@ -91,7 +106,7 @@ export default function Users() {
               >
                 {column.name}
               </TableColumn>
-            ))} 
+            ))}
           </TableHeader>
           <TableBody>
             {users.map((user, index) => (
@@ -114,7 +129,7 @@ export default function Users() {
                   {safeValue(user.role)}
                 </TableCell>
                 <TableCell className="py-2 px-4">
-                  <Chip color={statusOptions[user.status] || "danger"}>
+                  <Chip color={statusOptions[user.status]}>
                     {safeValue(user.status)}
                   </Chip>
                 </TableCell>
